@@ -72,33 +72,39 @@ class AutoKijiji:
         profile_path = None
 
         if self.browser=='firefox':
-
-            if plat=='Linux':
-                profile_path = os.path.join('/home/',
-                                            f'{os.getlogin()}',
-                                            '.mozilla/firefox/')
-            elif plat=='Darwin':
-                profile_path = os.path.join('/Users/',
-                                            f'{os.getlogin()}',
-                                            '/Library/Application Support/Firefox/Profiles/')
-            elif plat=='Windows':
-                profile_path = os.path.join('\\Users\\',
-                                            f'{os.getlogin()}',
-                                            '\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\')
+            try:
+                if plat=='Linux':
+                    profile_path = os.path.join('/home/',
+                                                f'{os.getlogin()}',
+                                                '.mozilla/firefox/')
+                elif plat=='Darwin':
+                    profile_path = os.path.join('/Users/',
+                                                f'{os.getlogin()}',
+                                                '/Library/Application Support/Firefox/Profiles/')
+                elif plat=='Windows':
+                    profile_path = os.path.join('\\Users\\',
+                                                f'{os.getlogin()}',
+                                                '\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\')
+            except:
+                print("Profile folder could not be found.")
+                sys.exit()
         elif self.browser=='chrome':
-
-            if plat=='Linux':
-                profile_path = os.path.join('/home/',
-                                            f'{os.getlogin()}',
-                                            '/.config/google-chrome/default')
-            elif plat=='Darwin':
-                profile_path = os.path.join('Users/',
-                                            f'{os.getlogin()}',
-                                            '/Library/Application Support/Google/Chrome/Default')
-            elif plat=='Windows':
-                profile_path = os.path.join('C:\\Users\\',
-                                            f'{os.getlogin()}',
-                                            '\\AppData\\Local\\Google\\Chrome\\User Data\\Default')
+            try:
+                if plat=='Linux':
+                    profile_path = os.path.join('/home/',
+                                                f'{os.getlogin()}',
+                                                '/.config/google-chrome/default')
+                elif plat=='Darwin':
+                    profile_path = os.path.join('Users/',
+                                                f'{os.getlogin()}',
+                                                '/Library/Application Support/Google/Chrome/Default')
+                elif plat=='Windows':
+                    profile_path = os.path.join('C:\\Users\\',
+                                                f'{os.getlogin()}',
+                                                '\\AppData\\Local\\Google\\Chrome\\User Data\\Default')
+            except:
+                print("Profile folder could not be found.")
+                sys.exit()
         else:
             print("Browser argument not recognized. Must be one of: ['firefox', 'chrome'].")
             sys.exit()
