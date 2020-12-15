@@ -2,3 +2,4 @@ python-dotenv
 selenium
 pathlib
 numpy
+pyyaml
